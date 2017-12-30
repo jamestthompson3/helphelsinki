@@ -1,0 +1,19 @@
+{
+  "name": "mammurobotti",
+  "version": "0.0.1",
+  "description": "chatbot for Finnish immigrants",
+  "main": "index.js",
+  "author": "t_t",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.16.2",
+    "immutable": "^3.8.2",
+    "immutable-ext": "^1.1.2",
+    "natural-brain": "^0.2.3",
+    "nodemon": "^1.14.6",
+    "socket.io": "^2.0.4"
+  },
+  "devDependencies": {
+    "lodash": "^4.17.4"
+  }
+}
