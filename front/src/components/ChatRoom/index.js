@@ -6,6 +6,7 @@ import { socket } from '../../socketUtils'
 const RoomWrapper = styled.div`
   width: 100%;
   height: 100%;
+  align-self: flex-end;
   border-bottom-radius: 5px;
   background: transparent;
   color: rgb(192,192,192);
@@ -19,9 +20,11 @@ const RoomWrapper = styled.div`
 const EnterMessage = styled.input.attrs({
   type: 'text'
 })`
-  width: 78%;
   border-radius: 5px;
-  color: #000;
+  border: none;
+  background: transparent;
+  flex: 1;
+  color: #fff;
   padding: 5px;
   font-size: 18px;
   line-height: 18px;
@@ -40,12 +43,13 @@ const MessageContent = styled.div`
 const SendButton = styled.button.attrs({
   type: 'submit'
 })`
-  width: 13%;
   line-height: 18px;
+  background: transparent;
+  border: none;
   font-size: 18px;
   border-radius: 5px;
-  background: #fff;
   outline: none;
+  color: #fff;
   cursor: pointer;
 `
 const FormContainer = styled.form`
@@ -53,6 +57,9 @@ const FormContainer = styled.form`
   margin-top: 0.3rem;
   display: flex;
   justify-content: space-around;
+  background: rgba(255,255,255,0.15);
+  border: 1px solid rgb(192,192,192);
+  border-radius: 5px;
 `
 const Message = styled.li`
   color: ${p => p.origin === 'user' ? '#fff' : '#46e4d1'};
@@ -94,7 +101,7 @@ class ChatRoom extends Component {
         </MessageContent>
         <FormContainer onSubmit={this.handleSubmit}>
           <EnterMessage placeholder='enter your message here' onChange={this.handleChat} value={messageText}/>
-          <SendButton>Send</SendButton>
+          <SendButton><i className='material-icons'>send</i></SendButton>
         </FormContainer>
       </RoomWrapper>
     )
