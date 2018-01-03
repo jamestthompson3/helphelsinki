@@ -40,7 +40,7 @@ class App extends Component {
     return (
       <ChatWrapper>
         <WelcomeBox>
-          <h1 style={{ color: 'floralwhite' }}>Welcome to Help Helsinki!</h1>
+          <h1 style={{ color: 'floralwhite' }}>Welcome to Helpsinki!</h1>
           <ChatRoom />
         </WelcomeBox>
       </ChatWrapper>

@@ -9,10 +9,7 @@ const transitTree = _.flow(
 )
 const logisticsTree = _.flow(
   message => message.map(word => keywords.logistics.includes(word) ? word : null).filter(word => word !== null),
-  filteredArray => {
-  console.log(filteredArray)
-  return filteredArray.length >= 0 ? keywords.resources['bankAccount'] : "sorry bro. I don't know that."
-  }
+  filteredArray => filteredArray.length >= 0 ? keywords.resources['bankAccount'] : "sorry bro. I don't know that."
 )
 
 exports.splitMessage = splitMessage

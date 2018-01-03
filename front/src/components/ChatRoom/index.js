@@ -54,9 +54,11 @@ const FormContainer = styled.form`
   display: flex;
   justify-content: space-around;
 `
-const Message = styled.h3`
+const Message = styled.li`
   color: ${p => p.origin === 'user' ? '#fff' : '#46e4d1'};
   align-self: ${p => p.origin === 'user' ? 'flex-end' : 'flex-start'};
+  font-size: 1.5rem;
+  list-style-type: none;
 `
 
 class ChatRoom extends Component {
