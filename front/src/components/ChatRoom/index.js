@@ -51,9 +51,11 @@ class ChatRoom extends Component {
           }
         </MessageContent>
         {popup
-          ? commands.map((command, i) =>
-            <CommandPopup key={i} onClick={() => this.sendMessage('hello')}><li>{command}</li></CommandPopup>
-          )
+          ? <CommandPopup>
+            { commands.map((command, i) =>
+              <li key={i} onClick={() => this.sendMessage(`${command}`)}>{command}</li>
+            )}
+          </CommandPopup>
           : null
         }
         <FormContainer onSubmit={this.handleSubmit}>

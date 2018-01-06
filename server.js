@@ -35,7 +35,7 @@ io.on('connection',socket => {
       socket.emit('message', {text: 'What can I do for you today?', origin: 'server'})
       socket.on('message', message => {
             socket.emit('message', message)
-            message => message.text[0] === '@'
+            message.text[0] === '@'
             ? commands.detectCommand(message.text)
             : _.flow(
                 message => classifier.classify(message.text),
@@ -55,3 +55,8 @@ http.listen(PORT, () => console.log(`listening on port ${PORT}`))
 // Current station, check if bikes avaialble
 // If yes, return coords/directions
 // If no, find next closest.
+
+
+// TODO2:
+// Send geoloc from client
+// send nearest from server.

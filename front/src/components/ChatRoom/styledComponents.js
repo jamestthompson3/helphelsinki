@@ -72,12 +72,17 @@ export const CommandPopup = styled.div`
   border-radius: 5px;
   box-shadow: 0 0 11px #73768473;
   text-align: center;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  flex-direction: column;
-  &:hover {
-    background: #325ab3;
-  }
   list-style-type: none;
+  >li {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+    &:hover {
+      background: #325ab3;
+      border-radius: 5px;
+    }
+  }
 `
