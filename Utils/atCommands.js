@@ -66,6 +66,7 @@ graphQLClient.query(`
   }
 }
 `)
+}
 
 // https://github.com/sampsakuronen/kaupunkifillarit-web/blob/master/app.js
 
