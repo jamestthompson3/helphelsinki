@@ -34,11 +34,23 @@ io.on('connection',socket => {
       socket.emit('message', {text: 'What can I do for you today?', origin: 'server'})
       socket.on('message', message => {
             socket.emit('message', message)
-            _.flow(
-                  messsage => classifier.classify(message.text),
-                  classified => socket.emit('message', { text: CATEGORIES[classified](strUtils.splitMessage(message)), origin: 'server' })
+            messsage => message[0] === '@'
+            ? socket.emit('message', {text: 'at-command detected', origin: 'server'})
+            : _.flow(
+                messsage => classifier.classify(message.text),
+                classified => socket.emit('message', { text: CATEGORIES[classified](strUtils.splitMessage(message)), origin: 'server' })
             )(message)
       })
 })
 
 http.listen(PORT, () => console.log(`listening on port ${PORT}`))
+
+
+// TODO:
+// CITY BIKE INFO https://api.digitransit.fi/graphiql/hsl?query=%7B%0A%20%20nearest(lat%3A60.1731473%20lon%3A24.9224112%2C%20filterByPlaceTypes%3A%20BICYCLE_RENT)%20%7B%0A%20%20%20%20edges%20%7B%0A%20%20%20%20%20%20node%20%7B%0A%20%20%20%20%20%20%20%20id%2C%0A%20%20%20%20%20%20%20%20place%20%7B%0A%20%20%20%20%20%20%20%20%20%20id%0A%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20distance%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%7D%0A%20%20%7D%0A%7D
+// Search closest bike station
+// get ID
+// Search all stations, get where id === ID
+// Current station, check if bikes avaialble
+// If yes, return coords/directions
+// If no, find next closest.
