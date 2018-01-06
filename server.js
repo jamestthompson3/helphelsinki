@@ -4,6 +4,7 @@ const app = require('express')(),
       PORT = 5000,
       _ = require('lodash'),
       strUtils = require('./Utils/StringUtils'),
+      commands = require('./Utils/atCommands'),
       BrainJSClassifier = require('natural-brain'),
       classifier = new BrainJSClassifier()
 
@@ -34,10 +35,10 @@ io.on('connection',socket => {
       socket.emit('message', {text: 'What can I do for you today?', origin: 'server'})
       socket.on('message', message => {
             socket.emit('message', message)
-            messsage => message[0] === '@'
-            ? socket.emit('message', {text: 'at-command detected', origin: 'server'})
+            message => message.text[0] === '@'
+            ? commands.detectCommand(message.text)
             : _.flow(
-                messsage => classifier.classify(message.text),
+                message => classifier.classify(message.text),
                 classified => socket.emit('message', { text: CATEGORIES[classified](strUtils.splitMessage(message)), origin: 'server' })
             )(message)
       })
