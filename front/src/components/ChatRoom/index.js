@@ -15,6 +15,8 @@ const RoomWrapper = styled.div`
   justify-content: space-around;
   align-items: center;
   flex-direction: column;
+  padding-left: 5px;
+  padding-right: 5px;
   padding-bottom: 5px;
 `
 const EnterMessage = styled.input.attrs({
@@ -31,7 +33,7 @@ const EnterMessage = styled.input.attrs({
   padding: 8px;
 `
 const MessageContent = styled.div`
-  width: 95%;
+  width: 100%;
   height: 95%;
   display: flex;
   flex-direction: column;
@@ -50,7 +52,7 @@ const SendButton = styled.button.attrs({
   cursor: pointer;
 `
 const FormContainer = styled.form`
-  width: 98%;
+  width: 100%;
   margin-top: 0.3rem;
   display: flex;
   justify-content: space-around;
@@ -61,7 +63,7 @@ const FormContainer = styled.form`
 const Message = styled.li`
   color: ${p => p.origin === 'user' ? '#fff' : '#ffcc00'};
   align-self: ${p => p.origin === 'user' ? 'flex-end' : 'flex-start'};
-  font-size: 1.5rem;
+  font-size: 110%;
   list-style-type: none;
 `
 
