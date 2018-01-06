@@ -65,7 +65,8 @@ export const Message = styled.li`
 `
 export const CommandPopup = styled.div`
   width: 25%;
-  height: 5%;
+  display: flex;
+  flex-direction: column;
   color: rgb(192,192,192);
   background #191919;
   align-self: flex-start;
@@ -73,9 +74,11 @@ export const CommandPopup = styled.div`
   box-shadow: 0 0 11px #73768473;
   text-align: center;
   list-style-type: none;
+  position: absolute;
+  bottom: 3rem;
   >li {
     width: 100%;
-    height: 100%;
+    height: 3rem;
     display: flex;
     justify-content: space-around;
     align-items: center;

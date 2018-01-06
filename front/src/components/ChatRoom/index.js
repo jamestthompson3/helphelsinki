@@ -59,7 +59,7 @@ class ChatRoom extends Component {
           : null
         }
         <FormContainer onSubmit={this.handleSubmit}>
-          <EnterMessage placeholder='enter your message here' onChange={this.handleChat} value={messageText}/>
+          <EnterMessage  placeholder='enter your message here' onChange={this.handleChat} value={messageText}/>
           <SendButton><i className='material-icons'>send</i></SendButton>
         </FormContainer>
       </RoomWrapper>

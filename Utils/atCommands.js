@@ -34,7 +34,8 @@ const graphQLClient = new Lokka({
 */
 
 const bikingFunction = () => {
-graphQLClient.query(`
+  // to acess data, {nearest: {edges}}) use edge.node.place.id
+Promise.all([graphQLClient.query(`
   {
   nearest(lat:60.1731473 lon:24.9224112, filterByPlaceTypes: BICYCLE_RENT) {
     edges {
@@ -49,9 +50,22 @@ graphQLClient.query(`
   }
 }
 }
-`).then(({nearest: {edges}}) => console.log(id)
-  // to acess data, use edge.node.place.id
-)}
+`),
+graphQLClient.query(`
+  {
+    bikeRentalStations {
+      name
+      stationId
+      realtime
+      bikesAvailable
+      id
+    }
+  }
+}
+`)
+]).then(values => console.log(JSON.stringify(values[0])))
+}
+
 
 const getBikinginfo = () => {
 graphQLClient.query(`
