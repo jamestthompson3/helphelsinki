@@ -10,6 +10,7 @@
     "immutable": "^3.8.2",
     "immutable-ext": "^1.1.2",
     "lokka": "^1.7.0",
+    "lokka-transport-http": "^1.6.1",
     "natural-brain": "^0.2.3",
     "nodemon": "^1.14.7",
     "socket.io": "^2.0.4",
