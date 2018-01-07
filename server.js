@@ -36,7 +36,7 @@ io.on('connection',socket => {
       socket.on('message', message => {
             socket.emit('message', message)
             message.text[0] === '@'
-            ? commands.detectCommand(message.text)
+            ? commands.detectCommand(message.text).then(data => socket.emit('message', {text: data, origin: 'server'}))
             : _.flow(
                 message => classifier.classify(message.text),
                 classified => socket.emit('message', { text: CATEGORIES[classified](strUtils.splitMessage(message)), origin: 'server' })

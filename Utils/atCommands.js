@@ -33,11 +33,11 @@ const graphQLClient = new Lokka({
 }
 */
 
-const bikingFunction = () => {
+const bikingFunction = () =>
   // to acess data, {nearest: {edges}}) use edge.node.place.id
 Promise.all([graphQLClient.query(`
   {
-  nearest(lat:60.1731473 lon:24.9224112, filterByPlaceTypes: BICYCLE_RENT) {
+  nearest(lat:60.1731473 lon:24.9224112, filterByPlaceTypes: BICYCLE_RENT, maxDistance: 500) {
     edges {
       node {
         id,
@@ -54,33 +54,20 @@ Promise.all([graphQLClient.query(`
 graphQLClient.query(`
   {
     bikeRentalStations {
-      name
-      stationId
-      realtime
       bikesAvailable
+      name
       id
+      lat
+      lon
     }
   }
 }
 `)
-]).then(values => console.log(JSON.stringify(values[0])))
-}
+]).then(values => _.flow(
+  values => _.flatten(values[0].nearest.edges.map(i => values[1].bikeRentalStations.filter(station => station.id === i.node.place.id))), // .filter(i => i.bikesAvailable >= 0) ),
+  filteredArray =>filteredArray.length > 0 ? `[${filteredArray[0].name} station](https://maps.google.com/?q=${filteredArray[0].lat},${filteredArray[0].lon}) has ${filteredArray[0].bikesAvailable} bikes available` : 'sorry, no bikes available within 500m')(values)
+  )
 
-
-const getBikinginfo = () => {
-graphQLClient.query(`
-  {
-    bikeRentalStations {
-      name
-      stationId
-      realtime
-      bikesAvailable
-      id
-    }
-  }
-}
-`)
-}
 
 // https://github.com/sampsakuronen/kaupunkifillarit-web/blob/master/app.js
 

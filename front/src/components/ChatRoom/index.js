@@ -22,7 +22,7 @@ class ChatRoom extends Component {
   componentDidMount() {
     socket.on('message', message => this.setState(prevState =>({ messages: [...prevState.messages, message] })))
   }
-  componentDidUpdate = () => this.message? this.scrollToBottom() : null
+  componentDidUpdate = () => this.message ? this.scrollToBottom() : null
   scrollToBottom = () => this.message.scrollIntoView({ behaviour: 'smooth' })
   handleChat = event => this.setState({ messageText: event.target.value, popup: event.target.value.split('').filter(item => item === '@').length > 0 ? true : false })
   handleSubmit = e => {
