@@ -24,7 +24,9 @@ const transLogistics = [
   'pass',
   'card',
   'ticket',
-  'rate'
+  'rate',
+  'free',
+  'fee'
 ]
 
 const logistics = [

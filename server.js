@@ -22,6 +22,11 @@ classifier.addDocument('what do i need to move to Finland', 'MOVING')
 classifier.addDocument('do i need a visa to work in finland?', 'IMMIGRATION')
 classifier.addDocument('how do i get a residence permit?', 'IMMIGRATION')
 classifier.addDocument('how do you buy a bus pass?', 'TRANSPORTATION')
+classifier.addDocument('whats the fastest way to the airport?', 'TRANSPORTATION')
+classifier.addDocument('how late do the buses run?', 'TRANSPORTATION')
+classifier.addDocument('when is the last metro?', 'TRANSPORTATION')
+classifier.addDocument('which trains go downtown?', 'TRANSPORTATION')
+classifier.addDocument('is the tram free?', 'TRANSPORTATION')
 classifier.addDocument('how do i use public transportation in Helsinki?', 'TRANSPORTATION')
 classifier.addDocument('where do i get a verokortti?', 'LOGISTICS')
 classifier.addDocument('where do i get a tax card?', 'LOGISTICS')
@@ -36,7 +41,7 @@ io.on('connection',socket => {
       socket.on('message', message => {
             socket.emit('message', message)
             message.text[0] === '@'
-            ? commands.detectCommand(message.text).then(data => socket.emit('message', {text: data, origin: 'server'}))
+            ? commands.detectCommand(message).then(data => socket.emit('message', {text: data, origin: 'server'}))
             : _.flow(
                 message => classifier.classify(message.text),
                 classified => socket.emit('message', { text: CATEGORIES[classified](strUtils.splitMessage(message)), origin: 'server' })
