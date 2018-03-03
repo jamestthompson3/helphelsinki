@@ -40,7 +40,6 @@ class ChatRoom extends Component {
     messageText.includes('bikes', 'eat')
       ? ('geolocation' in navigator &&
       navigator.geolocation.getCurrentPosition(position => {
-        console.log(position.coords)
         return socket.emit('message', { text: messageText, origin: 'user', lat: position.coords.latitude, lon: position.coords.longitude })
       }),
         this.setState({ messageText: '', popup: false })

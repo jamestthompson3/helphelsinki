@@ -2,7 +2,7 @@ const express = require('express'),
       app = express(),
       http = require('http').Server(app),
       io = require('socket.io')(http),
-      PORT = 80,
+      PORT = 8000,
       path = require('path'),
       _ = require('lodash'),
       strUtils = require('./Utils/StringUtils'),
@@ -40,7 +40,7 @@ classifier.train()
 
 app.use(express.static(path.join(__dirname, '/front/build')))
 app.get('*',(req, res) => res.sendFile(path.join(__dirname, '/front/build', 'index.html')))
-io.on('connection',socket => {
+io.of('/socket').on('connection', socket => {
       socket.emit('message', {text: 'What can I do for you today?', origin: 'server'})
       socket.on('message', message => {
             socket.emit('message', message)
@@ -55,17 +55,3 @@ io.on('connection',socket => {
 
 http.listen(PORT, () => console.log(`listening on port ${PORT}`))
 
-
-// TODO:
-// CITY BIKE INFO https://api.digitransit.fi/graphiql/hsl?query=%7B%0A%20%20nearest(lat%3A60.1731473%20lon%3A24.9224112%2C%20filterByPlaceTypes%3A%20BICYCLE_RENT)%20%7B%0A%20%20%20%20edges%20%7B%0A%20%20%20%20%20%20node%20%7B%0A%20%20%20%20%20%20%20%20id%2C%0A%20%20%20%20%20%20%20%20place%20%7B%0A%20%20%20%20%20%20%20%20%20%20id%0A%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20distance%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%7D%0A%20%20%7D%0A%7D
-// Search closest bike station
-// get ID
-// Search all stations, get where id === ID
-// Current station, check if bikes avaialble
-// If yes, return coords/directions
-// If no, find next closest.
-
-
-// TODO2:
-// Send geoloc from client
-// send nearest from server.
