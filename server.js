@@ -1,7 +1,9 @@
-const app = require('express')(),
+const express = require('express'),
+      app = express(),
       http = require('http').Server(app),
       io = require('socket.io')(http),
-      PORT = 5000,
+      PORT = 80,
+      path = require('path'),
       _ = require('lodash'),
       strUtils = require('./Utils/StringUtils'),
       commands = require('./Utils/atCommands'),
@@ -35,7 +37,9 @@ classifier.addDocument('how do i get a Finnish phone number?', 'LOGISTICS')
 
 classifier.train()
 
-app.get('/',(req, res) => res.send('hello'))
+
+app.use(express.static(path.join(__dirname, '/front/build')))
+app.get('*',(req, res) => res.sendFile(path.join(__dirname, '/front/build', 'index.html')))
 io.on('connection',socket => {
       socket.emit('message', {text: 'What can I do for you today?', origin: 'server'})
       socket.on('message', message => {
