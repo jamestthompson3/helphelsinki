@@ -69,8 +69,6 @@ graphQLClient.query(`
   ).catch(err => console.log(err))
 
 
-// https://github.com/sampsakuronen/kaupunkifillarit-web/blob/master/app.js
-
 const eatFunction = () => null
 const helpFunction = () => null
 const directionsFunction = () => null

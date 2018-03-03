@@ -33,8 +33,7 @@ class ChatRoom extends Component {
     e.preventDefault()
     const { messageText } = this.state
     messageText.length > 5
-      ? this.sendMessage(messageText)
-      : null
+      && this.sendMessage(messageText)
   }
   sendMessage = ( messageText ) => {
     messageText.includes('bikes', 'eat')
@@ -55,22 +54,20 @@ class ChatRoom extends Component {
     return (
       <RoomWrapper>
         <MessageContent>
-          {messages.length > 0 ?
+          {messages.length > 0 &&
             messages.map((message, i) =>
               <Message key={i} origin={message.origin} innerRef={div => this.message = div}>
                 <Markdown source={message.text} />
               </Message>
             )
-            : null
           }
         </MessageContent>
         {popup
-          ? <CommandPopup>
+          && <CommandPopup>
             { commands.map((command, i) =>
               <li key={i} onClick={() => this.sendMessage(`${command}`)}>{command}</li>
             )}
           </CommandPopup>
-          : null
         }
         <FormContainer onSubmit={this.handleSubmit}>
           <EnterMessage innerRef={input => this.text = input} placeholder='enter your message here' onChange={this.handleChat} value={messageText}/>
