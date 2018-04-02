@@ -11,9 +11,20 @@ const transitTree = _.flow(
 )
 const logisticsTree = _.flow(
   message => message.map(word => keywords.logistics.includes(word) ? word : null).filter(word => word !== null),
-  filteredArray => filteredArray.length >= 0 ? keywords.resources['bankAccount'] : "sorry bro. I don't know that."
+  filteredArray => {
+ if(filteredArray.length >= 0){
+    return filteredArray.includes('bank','account')
+         ? keywords.resources['bankAccount']
+         : keywords.resources['vero']
+  }
+    return "sorry bro. I don't know that."
+})
+const immigrationTree = _.flow(
+   message => message.map(word => keywords.actions.includes(word) ? word : null).filter(word => word !== null),
+  filteredArray => filteredArray.length >= 0 ? keywords.resources['migri'] : "sorry bro. I don't know that."
 )
 
 exports.splitMessage = splitMessage
 exports.transitTree = transitTree
+exports.immigrationTre = immigrationTree
 exports.logisticsTree = logisticsTree

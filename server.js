@@ -8,7 +8,8 @@ const express = require('express'),
       strUtils = require('./Utils/StringUtils'),
       commands = require('./Utils/atCommands'),
       BrainJSClassifier = require('natural-brain'),
-      classifier = new BrainJSClassifier()
+      classifier = new BrainJSClassifier(),
+      { insertMessages } = require('./Utils/dbUtils')
 
 
 const CATEGORIES = {
@@ -41,15 +42,16 @@ classifier.train()
 app.use(express.static(path.join(__dirname, '/front/build')))
 app.get('*',(req, res) => res.sendFile(path.join(__dirname, '/front/build', 'index.html')))
 io.of('/socket').on('connection', socket => {
-      socket.emit('message', {text: 'What can I do for you today?', origin: 'server'})
+      socket.emit('message', {text: 'What can I do for you today?\n\n Try commands like @bikes for city bike information.\n\n If you have suggestions to make me better, please send an email to info@helpsinki.fi', origin: 'server'})
       socket.on('message', message => {
             socket.emit('message', message)
             message.text[0] === '@'
-            ? commands.detectCommand(message).then(data => socket.emit('message', {text: data, origin: 'server'}))
-            : _.flow(
-                message => classifier.classify(message.text),
-                classified => socket.emit('message', { text: CATEGORIES[classified](strUtils.splitMessage(message)), origin: 'server' })
+              ? commands.detectCommand(message).then(data => socket.emit('message', {text: data, origin: 'server'}))
+              : _.flow(
+                    message => classifier.classify(message.text),
+                    classified => socket.emit('message', { text: CATEGORIES[classified](strUtils.splitMessage(message)), origin: 'server' })
             )(message)
+       insertMessages(message.text, message.text[0] === '@' ? 'atCommand' : classifier.classify(message.text))
       })
 })
 

@@ -6,6 +6,7 @@
   "author": "t_t",
   "license": "MIT",
   "dependencies": {
+    "dotenv": "^5.0.1",
     "express": "^4.16.2",
     "immutable": "^3.8.2",
     "immutable-ext": "^1.1.2",
@@ -13,6 +14,7 @@
     "lokka-transport-http": "^1.6.1",
     "natural-brain": "^0.2.3",
     "nodemon": "^1.14.11",
+    "pg": "^7.4.1",
     "socket.io": "^2.0.4",
     "superagent": "^3.8.2"
   },
