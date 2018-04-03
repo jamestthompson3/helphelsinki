@@ -13,15 +13,15 @@ const express = require('express'),
 
 
 const CATEGORIES = {
-            'MOVING': strUtils.movingTree,
             'TRANSPORTATION': strUtils.transitTree,
             'IMMIGRATION': strUtils.immigrationTree,
-            'LOGISTICS': strUtils.logisticsTree
+            'LOGISTICS': strUtils.logisticsTree,
+            'MOVING': strUtils.immigrationTree
       }
 
-classifier.addDocument('i am moving to Helsinki', 'MOVING')
-classifier.addDocument('i want to move to Finland', 'MOVING')
-classifier.addDocument('what do i need to move to Finland', 'MOVING')
+classifier.addDocument('i am moving to Helsinki', 'IMMIGRATION')
+classifier.addDocument('i want to move to Finland', 'IMMIGRATION')
+classifier.addDocument('what do i need to move to Finland', 'IMMIGRATION')
 classifier.addDocument('do i need a visa to work in finland?', 'IMMIGRATION')
 classifier.addDocument('how do i get a residence permit?', 'IMMIGRATION')
 classifier.addDocument('how do you buy a bus pass?', 'TRANSPORTATION')
@@ -37,7 +37,6 @@ classifier.addDocument('how do i open a bank account?', 'LOGISTICS')
 classifier.addDocument('how do i get a Finnish phone number?', 'LOGISTICS')
 
 classifier.train()
-
 
 app.use(express.static(path.join(__dirname, '/front/build')))
 app.get('*',(req, res) => res.sendFile(path.join(__dirname, '/front/build', 'index.html')))

@@ -26,5 +26,5 @@ const immigrationTree = _.flow(
 
 exports.splitMessage = splitMessage
 exports.transitTree = transitTree
-exports.immigrationTre = immigrationTree
+exports.immigrationTree = immigrationTree
 exports.logisticsTree = logisticsTree
