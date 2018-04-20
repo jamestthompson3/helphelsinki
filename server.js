@@ -12,7 +12,8 @@ const express = require("express"),
   BrainJSClassifier = require("natural-brain"),
   classifier = new BrainJSClassifier(),
   { createSSL } = require("./Utils/serverUtils"),
-  { insertMessages } = require("./Utils/dbUtils")
+  { insertMessages } = require("./Utils/dbUtils"),
+  forceSsl = require("express-force-ssl")
 
 const CATEGORIES = {
   TRANSPORTATION: strUtils.transitTree,
@@ -47,6 +48,7 @@ classifier.addDocument("how do i get a Finnish phone number?", "LOGISTICS")
 classifier.train()
 
 app.use(express.static(path.join(__dirname, "/front/build")))
+app.use(forceSsl)
 app.get("*", (req, res) =>
   res.sendFile(path.join(__dirname, "/front/build", "index.html"))
 )
