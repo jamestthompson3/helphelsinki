@@ -1,8 +1,8 @@
-import React, { Component } from 'react'
-import styled, { injectGlobal } from 'styled-components'
+import React, { Component } from "react"
+import styled, { injectGlobal } from "styled-components"
 
-import ChatRoom from './components/ChatRoom'
-import { PageWrapper } from './components/common'
+import ChatRoom from "./components/ChatRoom"
+import { PageWrapper } from "./components/common"
 
 injectGlobal`
   body {
@@ -15,12 +15,10 @@ injectGlobal`
   }
 `
 
-
 const ChatWrapper = styled.div`
   width: 100%;
   height: 100%;
-  background: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.8)),url(hkiMap.jpg);
-  background-size: cover;
+  background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.8));
   display: flex;
   align-items: center;
   justify-content: space-around;

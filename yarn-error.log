@@ -14,7 +14,7 @@ Platform:
   linux x64
 
 Trace: 
-  Error: EACCES: permission denied, unlink '/home/taylor/code/mammurobotti/node_modules/abbrev/package.json'
+  Error: EACCES: permission denied, unlink '/home/taylor/code/mammurobotti/node_modules/accepts/HISTORY.md'
 
 npm manifest: 
   {

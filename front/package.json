@@ -4,7 +4,7 @@
   "private": true,
   "proxy": {
     "/socket": {
-      "target": "http://localhost:8000/",
+      "target": "http://localhost:8080/",
       "ws": true
     }
   },

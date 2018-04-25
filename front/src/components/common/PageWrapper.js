@@ -1,28 +1,22 @@
-import React from 'react'
-import styled from 'styled-components'
+import React from "react"
+import styled from "styled-components"
 
 const Background = styled.div`
   width: 100vw;
   height: 100vh;
-  background: #5AAA95;
+  background: #333;
 `
 
 const Wrapper = styled.div`
   max-width: 540px;
   margin: 0 auto;
-  background: white;
+  background: url(helsinki.jpg);
+  background-position: 45%, 60%;
+  background-size: cover;
   height: 100%;
   box-shadow: 0 2px 5px 0 #403f3f;
   display: flex;
   flex-direction: column;
-`
-
-const Header = styled.header`
-  background-color: #1B61C7;
-  height: 70px;
-  padding: 20px;
-  color: white;
-  text-align: center;
 `
 
 const Content = styled.main`
@@ -33,11 +27,13 @@ const Content = styled.main`
 
 const Logo = styled.div`
   display: flex;
+  background: #000;
+  height: 70px;
 `
 
 const LogoWrapper = styled.div`
   padding: 10px;
-  background: white;
+  background: transparent;
   border-radius: 10px;
   border-top-right-radius: 0;
 `
@@ -45,8 +41,9 @@ const LogoWrapper = styled.div`
 const LogoImg = styled.div`
   width: 50px;
   height: 50px;
-  background-color: white;
+  background-color: transparent;
   background-image: url(HKI.png);
+  opacity: 0.8;
   background-size: contain;
   background-position: center;
 `
@@ -57,20 +54,20 @@ const LogoText = styled.h1`
   line-height: 50px;
   font-size: 1.5rem;
   font-weight: 700;
+  text-transform: uppercase;
+  color: #ffe200;
 `
 
 const PageWrapper = ({ children }) => (
   <Background>
     <Wrapper>
-      <Header>
-        <Logo>
-          <LogoWrapper><LogoImg /></LogoWrapper>
-          <LogoText>Helpsinki</LogoText>
-        </Logo>
-      </Header>
-      <Content>
-        {children}
-      </Content>
+      <Logo>
+        <LogoWrapper>
+          <LogoImg />
+        </LogoWrapper>
+        <LogoText>Helpsinki</LogoText>
+      </Logo>
+      <Content>{children}</Content>
     </Wrapper>
   </Background>
 )

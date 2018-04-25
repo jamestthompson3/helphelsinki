@@ -54,8 +54,7 @@ app.get("*", (req, res) =>
 )
 io.of("/socket").on("connection", socket => {
   socket.emit("message", {
-    text:
-      "What can I do for you today?\n\n Try commands like @bikes for city bike information.\n\n If you have suggestions to make me better, please send an email to info@helpsinki.fi",
+    text: "What can I do for you today?\n\n ",
     origin: "server"
   })
   socket.on("message", message => {
