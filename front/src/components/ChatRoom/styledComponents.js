@@ -104,3 +104,8 @@ export const CommandPopup = styled.div`
     }
   }
 `
+export const Button = styled.button`
+  all: unset;
+  color: #ffe200;
+  font-size: 16px;
+`

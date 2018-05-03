@@ -1,7 +1,6 @@
 require("dotenv").config()
 const express = require("express"),
   app = express(),
-  https = require("https"),
   http = require("http").Server(app),
   io = require("socket.io")(http),
   PORT = 8080,
@@ -11,9 +10,7 @@ const express = require("express"),
   commands = require("./Utils/atCommands"),
   BrainJSClassifier = require("natural-brain"),
   classifier = new BrainJSClassifier(),
-  { createSSL } = require("./Utils/serverUtils"),
-  { insertMessages } = require("./Utils/dbUtils"),
-  forceSsl = require("express-force-ssl")
+  { insertMessages } = require("./Utils/dbUtils")
 
 const CATEGORIES = {
   TRANSPORTATION: strUtils.transitTree,
@@ -48,7 +45,15 @@ classifier.addDocument("how do i get a Finnish phone number?", "LOGISTICS")
 classifier.train()
 
 app.use(express.static(path.join(__dirname, "/front/build")))
-app.use(forceSsl)
+app.use((req, res, next) => {
+  if (
+    req.headers["x-forwarded-proto"] &&
+    req.headers["x-forwarded-proto"].toLowerCase() === "http"
+  ) {
+    return res.redirect("https://" + req.headers.host + req.url)
+  }
+})
+
 app.get("*", (req, res) =>
   res.sendFile(path.join(__dirname, "/front/build", "index.html"))
 )
@@ -80,8 +85,4 @@ io.of("/socket").on("connection", socket => {
   })
 })
 
-process.env.NODE_ENV === "production" &&
-  https
-    .createServer(createSSL(), app)
-    .listen(PORT, () => console.log(`secure server listening on port ${PORT}`))
 http.listen(PORT, () => console.log(`listening on port ${PORT}`))
