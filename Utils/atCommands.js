@@ -80,7 +80,7 @@ const eatFunction = () => null
 const helpFunction = () => {
   const helpPromise = new Promise((res, rej) =>
     res(
-      "I'm here to make being in Helsinki easier!\n\nIf you're moving to Helsinki from abroad, you can ask questions such as how can I get a bank account?\n\n If you live in Helsinki, you can find info about transit.\n\n If you have an idea to make this better, let us know at info@helpsinki.fi"
+      "I'm here to make being in Helsinki easier!\n\n\n\n If you live in Helsinki, you can find info about transit.\n\n If you're moving to Helsinki from abroad, you can ask questions such as how can I get a bank account?"
     )
   )
   return helpPromise

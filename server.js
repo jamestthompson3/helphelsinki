@@ -58,10 +58,6 @@ app.get("*", (req, res) =>
   res.sendFile(path.join(__dirname, "/front/build", "index.html"))
 )
 io.of("/socket").on("connection", socket => {
-  socket.emit("message", {
-    text: "What can I do for you today?\n\n ",
-    origin: "server"
-  })
   socket.on("message", message => {
     socket.emit("message", message)
     message.text[0] === "@"

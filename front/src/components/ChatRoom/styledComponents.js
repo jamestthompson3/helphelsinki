@@ -23,6 +23,7 @@ export const EnterMessage = styled.input.attrs({
   border-radius: 5px;
   border: none;
   background: transparent;
+  font-family: "Oswald", sans-serif;
   flex: 1;
   color: #fff;
   padding: 5px;
@@ -90,7 +91,7 @@ export const CommandPopup = styled.div`
   text-align: center;
   list-style-type: none;
   position: absolute;
-  bottom: 3rem;
+  bottom: 7.5rem;
   >li {
     width: 100%;
     height: 3rem;

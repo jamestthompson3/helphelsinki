@@ -8,10 +8,10 @@ injectGlobal`
   body {
     margin: 0;
     padding: 0;
-    font-family: 'Lato';
+    font-family: 'Oswald';
   }
   a {
-    color: #00b4ff;
+    color: #ffe200;
   }
 `
 

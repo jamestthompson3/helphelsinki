@@ -13,7 +13,7 @@ const Wrapper = styled.div`
   background: url(helsinki.jpg);
   background-position: 45%, 60%;
   background-size: cover;
-  height: 100%;
+  height: calc(100% - 50px);
   box-shadow: 0 2px 5px 0 #403f3f;
   display: flex;
   flex-direction: column;
@@ -23,12 +23,15 @@ const Content = styled.main`
   position: relative;
   flex: 1;
   overflow-y: auto;
+  font-family: "Nunito", sans-serif;
 `
 
 const Logo = styled.div`
   display: flex;
   background: #000;
   height: 70px;
+  align-items: center;
+  width: 100%;
 `
 
 const LogoWrapper = styled.div`
@@ -66,6 +69,9 @@ const PageWrapper = ({ children }) => (
           <LogoImg />
         </LogoWrapper>
         <LogoText>Helpsinki</LogoText>
+        <p style={{ color: "#fff", justifySelf: "flex-end" }}>
+          What can I do for you today?
+        </p>
       </Logo>
       <Content>{children}</Content>
     </Wrapper>

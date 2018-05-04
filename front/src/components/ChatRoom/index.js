@@ -19,9 +19,8 @@ class ChatRoom extends Component {
   state = {
     messages: [],
     messageText: "",
-    status: "LOADING",
-    popup: false,
-    args: { lat: 5 }
+    status: "SUCCESS",
+    popup: false
   }
 
   componentDidMount() {
@@ -40,7 +39,7 @@ class ChatRoom extends Component {
     "geolocation" in navigator &&
     navigator.geolocation.getCurrentPosition(position =>
       this.setState({ args: position.coords })
-    ) // this.setState({ args: position.coords })
+    )
   scrollToBottom = () => this.message.scrollIntoView({ behaviour: "smooth" })
   handleChat = event =>
     this.setState({
@@ -86,17 +85,17 @@ class ChatRoom extends Component {
               </Message>
             ))}
           {status === "LOADING" && (
-            <div>
+            <div style={{ margin: "auto" }}>
               <svg
                 version="1.1"
                 id="Layer_1"
                 x="0px"
                 y="0px"
-                width="24px"
-                height="30px"
+                width="54px"
+                height="60px"
                 viewBox="0 0 24 30"
               >
-                <rect x="0" y="0" width="4" height="10" fill="#333">
+                <rect x="0" y="0" width="4" height="10" fill="#fff">
                   <animateTransform
                     attributeType="xml"
                     attributeName="transform"
@@ -107,7 +106,7 @@ class ChatRoom extends Component {
                     repeatCount="indefinite"
                   />
                 </rect>
-                <rect x="10" y="0" width="4" height="10" fill="#333">
+                <rect x="10" y="0" width="4" height="10" fill="#fff">
                   <animateTransform
                     attributeType="xml"
                     attributeName="transform"
@@ -118,7 +117,7 @@ class ChatRoom extends Component {
                     repeatCount="indefinite"
                   />
                 </rect>
-                <rect x="20" y="0" width="4" height="10" fill="#333">
+                <rect x="20" y="0" width="4" height="10" fill="#fff">
                   <animateTransform
                     attributeType="xml"
                     attributeName="transform"
@@ -149,10 +148,6 @@ class ChatRoom extends Component {
               <Button onClick={() => this.sendMessage("@bikes")}>@bikes</Button>{" "}
               for city bike information.
             </p>
-            <p>
-              If you have suggestions to make me better, please send a tweet
-              @helpsinkibot
-            </p>
           </Suggestion>
         )}
         <FormContainer onSubmit={this.handleSubmit}>
@@ -166,6 +161,10 @@ class ChatRoom extends Component {
             <i className="material-icons">send</i>
           </SendButton>
         </FormContainer>
+        <p>
+          If you have suggestions to make me better, please send a tweet
+          @helpsinkibot
+        </p>
       </RoomWrapper>
     )
   }
