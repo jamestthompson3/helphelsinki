@@ -13,7 +13,7 @@ const Wrapper = styled.div`
   background: url(helsinki.jpg);
   background-position: 45%, 60%;
   background-size: cover;
-  height: calc(100%);
+  height: 100%;
   box-shadow: 0 2px 5px 0 #403f3f;
   display: flex;
   flex-direction: column;

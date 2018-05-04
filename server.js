@@ -54,9 +54,12 @@ app.use((req, res, next) => {
   }
 })
 
-app.get("*", (req, res) =>
-  res.sendFile(path.join(__dirname, "/front/build", "index.html"))
-)
+app.get("*", (req, res) => {
+  if (req.protocol === "http" && process.env.NODE_ENV === "production") {
+    res.redirect("https://helpsinki.fi")
+  }
+  return res.sendFile(path.join(__dirname, "/front/build", "index.html"))
+})
 io.of("/socket").on("connection", socket => {
   socket.on("message", message => {
     socket.emit("message", message)
